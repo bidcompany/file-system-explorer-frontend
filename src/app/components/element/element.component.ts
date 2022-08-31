@@ -12,7 +12,7 @@ export class ElementComponent implements OnInit {
   @Input() name: string;
 
   constructor(
-    private explorerService: ExplorerService
+    private explorerService: ExplorerService,
   ) {
     this.type = '';
     this.ext = null;
@@ -35,7 +35,6 @@ export class ElementComponent implements OnInit {
   elementAction() {
     if (this.type == 'directory') {
       this.explorerService.pushPath(this.name);
-      this.explorerService.getPathContent();
     } else if (this.type == 'file') {
       this.explorerService.downloadFile();
     } else {

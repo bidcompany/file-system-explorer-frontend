@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ExplorerService } from './services/explorer.service';
 
 @Component({
   selector: 'app-root',
@@ -6,62 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor() { }
+  constructor(
+    private explorerService: ExplorerService
+  ) 
+  {
+    this.elements = this.explorerService.path.elements;
+  }
 
-  elements: Array<any> = [];
+  elements: Array<any>;
 
   ngOnInit(): void {
-    this.elements = [
-      {
-        type: 'directory',
-        ext: null,
-        name: '.git'
-      },
-      {
-        type: 'directory',
-        ext: null,
-        name: 'folder_a'
-      },
-      {
-        type: 'directory',
-        ext: null,
-        name: 'folder_b'
-      },
-      {
-        type: 'file',
-        ext: 'csv',
-        name: 'users.csv'
-      },
-      {
-        type: 'file',
-        ext: 'xls',
-        name: 'data.xls'
-      },
-      {
-        type: 'file',
-        ext: 'sql',
-        name: 'export.sql'
-      },
-      {
-        type: 'file',
-        ext: 'xml',
-        name: 'markup.xml'
-      },
-      {
-        type: 'file',
-        ext: 'xmlx',
-        name: 'markup2.xmlx'
-      },
-      {
-        type: 'file',
-        ext: 'gif',
-        name: 'funny.gif'
-      },
-      {
-        type: 'file',
-        ext: 'png',
-        name: 'very_funny.png'
-      },
-    ]
+    this.explorerService.getPathContent().subscribe();
   }
 }
