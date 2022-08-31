@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ExplorerService } from './services/explorer.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,13 @@ export class AppComponent {
   constructor(
     private explorerService: ExplorerService
   ) 
-  {
-    this.elements = this.explorerService.path.elements;
+  { 
+    this.elements = this.explorerService.getPathContent();
   }
 
-  elements: Array<any>;
+  elements: Observable<Array<any>>;
 
   ngOnInit(): void {
-    this.explorerService.getPathContent().subscribe();
+    
   }
 }

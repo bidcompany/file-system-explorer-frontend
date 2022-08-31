@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export interface Path {
   base: string;
   path: string;
   depth: number;
-  elements: Array<any>;
 }
 
 @Injectable({
@@ -17,8 +17,7 @@ export class ExplorerService {
   path: Path = { 
     base: environment.endpoint, 
     depth: 0,
-    path: '',
-    elements: []
+    path: ''
   };
 
   constructor(
@@ -37,12 +36,12 @@ export class ExplorerService {
     this.getPathContent().subscribe();
   }
 
-  getPathContent() {
+  getPathContent(): Observable<any> {
     return this.httpClient.get(environment.endpoint + '/api/v1/hist?path=' + this.path.path)
-      .pipe(tap((resp: any) => {
+      .pipe(map((resp: any) => { 
         console.log(resp.data.result);
-        this.path.elements = resp.data.result;
-      }));
+        return resp.data.result; 
+      } ));
   }
 
   downloadFile() {
