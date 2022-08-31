@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExplorerService } from 'src/app/services/explorer.service';
 import { Path } from 'src/app/services/explorer.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -9,6 +10,7 @@ import { Path } from 'src/app/services/explorer.service';
 })
 export class BreadcrumbsComponent implements OnInit {
   path: Path;
+  @Output() getPathEvent = new EventEmitter();
 
   constructor(
     private explorerService: ExplorerService
@@ -22,5 +24,6 @@ export class BreadcrumbsComponent implements OnInit {
 
   goBack() {
     this.explorerService.popPath();
+    this.getPathEvent.emit();
   }
 }

@@ -39,7 +39,6 @@ export class ExplorerService {
   getPathContent(): Observable<any> {
     return this.httpClient.get(environment.endpoint + '/api/v1/hist?path=' + this.path.path)
       .pipe(map((resp: any) => { 
-        console.log(resp.data.result);
         return resp.data.result; 
       } ));
   }

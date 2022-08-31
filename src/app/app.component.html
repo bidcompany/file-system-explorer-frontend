@@ -1,10 +1,11 @@
 <div>
-  <app-breadcrumbs></app-breadcrumbs>
+  <app-breadcrumbs (getPathEvent)="getPathContent()"></app-breadcrumbs>
 
   <div class="container">
     <div class="row">
       <app-element class="col-4 col-md-3 col-xl-2"
-        *ngFor="let element of elements | async"
+        *ngFor="let element of elements"
+        (getPathEvent)="getPathContent()"
         [type]="element.type"
         [ext]="element.ext"
         [name]="element.name">

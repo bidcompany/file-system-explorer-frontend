@@ -10,14 +10,18 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   constructor(
     private explorerService: ExplorerService
-  ) 
-  { 
-    this.elements = this.explorerService.getPathContent();
-  }
+  ) { }
 
-  elements: Observable<Array<any>>;
+  elements: Array<any> = [];
 
   ngOnInit(): void {
-    
+    this.getPathContent();
+  }
+
+  getPathContent() {
+    this.explorerService.getPathContent()
+      .subscribe((data) => {
+        this.elements = data;
+      });
   }
 }
