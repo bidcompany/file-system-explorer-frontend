@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ElementComponent } from './components/element/element.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'cargeas-frontend';
+  elements: Array<any> = [];
+
+  ngOnInit(): void {
+    this.elements = [
+      {
+        type: 'directory',
+        ext: null,
+        name: '.git'
+      },
+      {
+        type: 'file',
+        ext: 'gitignore',
+        name: '.gitignore'
+      },
+      {
+        type: 'directory',
+        ext: null,
+        name: '.vscode'
+      },
+      {
+        type: 'file',
+        ext: 'js',
+        name: 'app.js'
+      },
+    ]
+  }
 }
