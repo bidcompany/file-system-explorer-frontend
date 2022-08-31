@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ElementComponent } from './components/element/element.component';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +6,8 @@ import { ElementComponent } from './components/element/element.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor() { }
+
   elements: Array<any> = [];
 
   ngOnInit(): void {

@@ -1,0 +1,10 @@
+.breadcrumb-container {
+    word-break: break-all;
+    min-height: 80px;
+    background-color: #eceff1;
+}
+
+.breadcrumb-back {
+    font-size: 32px;
+    cursor: pointer;
+}

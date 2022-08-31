@@ -1,10 +1,15 @@
-<div class="container">
-  <div class="row">
-    <app-element class="col-4 col-md-3 col-xl-2"
-      *ngFor="let element of elements"
-      [type]="element.type"
-      [ext]="element.ext"
-      [name]="element.name">
-    </app-element>
+<div>
+  <app-breadcrumbs></app-breadcrumbs>
+
+  <div class="container">
+    <div class="row">
+      <app-element class="col-4 col-md-3 col-xl-2"
+        *ngFor="let element of elements"
+        [type]="element.type"
+        [ext]="element.ext"
+        [name]="element.name">
+      </app-element>
+    </div>
   </div>
 </div>
+

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input  } from '@angular/core';
+import { ExplorerService } from 'src/app/services/explorer.service';
 
 @Component({
   selector: 'app-element',
@@ -10,7 +11,9 @@ export class ElementComponent implements OnInit {
   @Input() ext: string | null;
   @Input() name: string;
 
-  constructor() {
+  constructor(
+    private explorerService: ExplorerService
+  ) {
     this.type = '';
     this.ext = null;
     this.name = '';
@@ -27,6 +30,18 @@ export class ElementComponent implements OnInit {
     ) {
       this.ext = 'generic';
     }
+  }
+
+  elementAction() {
+    if (this.type == 'directory') {
+      this.explorerService.pushPath(this.name);
+      this.explorerService.getPathContent();
+    } else if (this.type == 'file') {
+      this.explorerService.downloadFile();
+    } else {
+      // error
+    }
+    
   }
 
 }
