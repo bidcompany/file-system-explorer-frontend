@@ -1,0 +1,14 @@
+.element-container {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.element-container:hover {
+    background-color: #eceff1;
+}
+
+.element-icon {
+    font-size: 4rem;
+    color: #2962ff;
+}

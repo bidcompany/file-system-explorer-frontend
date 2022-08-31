@@ -17,6 +17,16 @@ export class ElementComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.ext?.startsWith('xls')) {
+      this.ext = 'xlsx';
+    } else if (
+      this.ext != null &&
+      this.ext != 'csv' &&
+      this.ext != 'sql' &&
+      this.ext != 'xml'
+    ) {
+      this.ext = 'generic';
+    }
   }
 
 }

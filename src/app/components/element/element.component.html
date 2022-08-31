@@ -1,6 +1,13 @@
-<div>
-    type: {{type}} <br>
-    ext: {{ext}} <br>
-    name: {{name}} <br>
-    <br>
+<div class="element-container text-center my-3">
+    <i class="element-icon"
+    [ngClass]="{
+        'bi bi-folder-fill' : ext == null , 
+        'bi bi-filetype-csv' : ext == 'csv',
+        'bi bi-filetype-xlsx' : ext == 'xlsx',
+        'bi bi-filetype-sql' : ext == 'sql',
+        'bi bi-filetype-xml' : ext == 'xml',
+        'bi bi-file-earmark' : ext == 'generic'
+    }">
+    </i>
+    <div>{{name}}</div>
 </div>

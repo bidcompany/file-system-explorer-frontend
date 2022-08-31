@@ -17,19 +17,49 @@ export class AppComponent {
         name: '.git'
       },
       {
-        type: 'file',
-        ext: 'gitignore',
-        name: '.gitignore'
+        type: 'directory',
+        ext: null,
+        name: 'folder_a'
       },
       {
         type: 'directory',
         ext: null,
-        name: '.vscode'
+        name: 'folder_b'
       },
       {
         type: 'file',
-        ext: 'js',
-        name: 'app.js'
+        ext: 'csv',
+        name: 'users.csv'
+      },
+      {
+        type: 'file',
+        ext: 'xls',
+        name: 'data.xls'
+      },
+      {
+        type: 'file',
+        ext: 'sql',
+        name: 'export.sql'
+      },
+      {
+        type: 'file',
+        ext: 'xml',
+        name: 'markup.xml'
+      },
+      {
+        type: 'file',
+        ext: 'xmlx',
+        name: 'markup2.xmlx'
+      },
+      {
+        type: 'file',
+        ext: 'gif',
+        name: 'funny.gif'
+      },
+      {
+        type: 'file',
+        ext: 'png',
+        name: 'very_funny.png'
       },
     ]
   }
