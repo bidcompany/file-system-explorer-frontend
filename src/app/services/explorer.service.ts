@@ -40,10 +40,14 @@ export class ExplorerService {
     return this.httpClient.get(environment.endpoint + '/api/v1/hist?path=' + this.path.path)
       .pipe(map((resp: any) => { 
         return resp.data.result; 
-      } ));
+      }));
   }
 
-  downloadFile() {
-    
+  downloadFile(fileName: string) {
+    const httpOptions = {
+      responseType: 'blob' as 'json'
+    };
+
+    return this.httpClient.get(environment.endpoint + '/api/v1/hist/donwload?file=' + this.path.path + '/' + fileName, httpOptions);
   }
 }
