@@ -2,6 +2,11 @@
   <app-breadcrumbs (getPathEvent)="getPathContent()"></app-breadcrumbs>
 
   <div class="container">
+    <div *ngIf="loading" class="loader">
+      <div class="loader-wheel"></div>
+      <div class="loader-text"></div>
+    </div>
+
     <div class="row">
       <app-element class="col-4 col-md-3 col-xl-2"
         *ngFor="let element of elements"
