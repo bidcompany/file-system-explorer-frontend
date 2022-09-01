@@ -12,7 +12,6 @@ export class ElementComponent implements OnInit {
   @Input() ext: string | null;
   @Input() name: string;
   @Output() getPathEvent = new EventEmitter();
-  blob: any;
 
   constructor(
     private explorerService: ExplorerService,
@@ -42,8 +41,8 @@ export class ElementComponent implements OnInit {
     } else if (this.type == 'file') {
       this.explorerService.downloadFile(this.name)
         .subscribe((data: any) => { 
-          this.blob = new Blob([data]);
-          var downloadURL = window.URL.createObjectURL(this.blob);
+          var blob = new Blob([data]);
+          var downloadURL = window.URL.createObjectURL(blob);
           var link = document.createElement('a');
           link.href = downloadURL;
           link.download = this.name;
