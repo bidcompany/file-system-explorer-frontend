@@ -31,6 +31,11 @@
     background-color: #eceff1;
 }
 
+.element-download-loading {
+    background-color: #eceff1;
+    cursor: wait;
+}
+
 .element-icon {
     font-size: 64px;
     color: #258900;

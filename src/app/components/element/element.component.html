@@ -6,8 +6,12 @@
         'bi bi-filetype-' + ext"></i>
     </div>
     <div class="element-name" title="{{name}}">{{name}}</div>
-    <div class="element-download mt-3 d-flex align-items-center justify-content-center" (click)="elementDownload()">
-        <div class="me-3 d-none d-sm-block">Download</div>
-        <i class="bi bi-download"></i>
+    <div class="element-download mt-3 d-flex align-items-center justify-content-center" 
+    [ngClass]="{'element-download-loading': loading}"
+    (click)="elementDownload()">
+        <i class="bi bi-download" *ngIf="!loading"></i>
+        <div class="ms-3 d-none d-sm-block">
+            {{ loading ? 'Loading...' : 'Download'}}
+        </div>
     </div>
 </div>

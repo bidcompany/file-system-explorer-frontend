@@ -13,6 +13,9 @@ export class ElementComponent implements OnInit {
   @Input() name: string;
   @Output() getPathEvent = new EventEmitter();
 
+  loading: boolean = false;
+  loadingTimer: any;
+
   iconTypes: Array<string> = [
     'aac', 'ai', 'bmp', 'cs', 'css',
     'csv', 'doc', 'docx', 'exe', 'gif',
@@ -43,6 +46,19 @@ export class ElementComponent implements OnInit {
     }
   }
 
+  startLoading() {
+    this.loadingTimer = setTimeout(() => {
+      this.loading = true;
+    }, 100);
+  }
+
+  stopLoading() {
+    if (this.loadingTimer) {
+      clearInterval(this.loadingTimer);
+    }
+    this.loading = false;
+  }
+
   elementAction() {
     if (this.type == 'directory') {
       this.explorerService.pushPath(this.name);
@@ -55,30 +71,37 @@ export class ElementComponent implements OnInit {
   }
 
   elementDownload() {
-    if (this.type == 'directory') {   
-      this.explorerService.downloadFolder(this.name)
-        .subscribe((data: any) => { 
-          var blob = new Blob([data]);
-          var downloadURL = window.URL.createObjectURL(blob);
-          var link = document.createElement('a');
-          link.href = downloadURL;
-          link.download = this.name + '.tar.gz';
-          link.click(); 
-
-          this.getPathEvent.emit();
-        });
-    } else if (this.type == 'file') {
-      this.explorerService.downloadFile(this.name)
-        .subscribe((data: any) => { 
-          var blob = new Blob([data]);
-          var downloadURL = window.URL.createObjectURL(blob);
-          var link = document.createElement('a');
-          link.href = downloadURL;
-          link.download = this.name;
-          link.click();
-        });
-    } else {
-      // error
+    if (!this.loading) {
+      if (this.type == 'directory') {  
+        this.startLoading(); 
+        this.explorerService.downloadFolder(this.name)
+          .subscribe((data: any) => { 
+            var blob = new Blob([data]);
+            var downloadURL = window.URL.createObjectURL(blob);
+            var link = document.createElement('a');
+            link.href = downloadURL;
+            link.download = this.name + '.tar.gz';
+            link.click(); 
+  
+            this.stopLoading();
+            this.getPathEvent.emit();
+          });
+      } else if (this.type == 'file') {
+        this.startLoading();
+        this.explorerService.downloadFile(this.name)
+          .subscribe((data: any) => { 
+            var blob = new Blob([data]);
+            var downloadURL = window.URL.createObjectURL(blob);
+            var link = document.createElement('a');
+            link.href = downloadURL;
+            link.download = this.name;
+            link.click();
+  
+            this.stopLoading();
+          });
+      } else {
+        // error
+      }
     }
   }
 }
