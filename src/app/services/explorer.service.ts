@@ -48,6 +48,14 @@ export class ExplorerService {
       responseType: 'blob' as 'json'
     };
 
-    return this.httpClient.get(environment.endpoint + '/api/v1/hist/donwload?file=' + this.path.path + '/' + fileName, httpOptions);
+    return this.httpClient.get(environment.endpoint + '/api/v1/hist/download?file=' + this.path.path + '/' + fileName, httpOptions);
+  }
+
+  downloadFolder(folderName: string) {
+    const httpOptions = {
+      responseType: 'blob' as 'json'
+    };
+
+    return this.httpClient.get(environment.endpoint + '/api/v1/hist/folder?file=' + this.path.path + '/' + folderName, httpOptions);
   }
 }

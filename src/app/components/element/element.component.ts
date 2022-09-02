@@ -13,6 +13,19 @@ export class ElementComponent implements OnInit {
   @Input() name: string;
   @Output() getPathEvent = new EventEmitter();
 
+  iconTypes: Array<string> = [
+    'aac', 'ai', 'bmp', 'cs', 'css',
+    'csv', 'doc', 'docx', 'exe', 'gif',
+    'heic', 'html', 'java', 'jpg', 'js',
+    'json', 'jsx', 'key', 'm4p', 'md',
+    'mdx', 'mov', 'mp3', 'mp4', 'otf',
+    'pdf', 'php', 'png', 'pptx', 'psd',
+    'py', 'raw', 'rb', 'sass', 'scss',
+    'sh', 'sql', 'svg', 'tiff', 'tsx',
+    'ttf', 'txt', 'wav', 'woff', 'xlsx',
+    'xml', 'yml',
+  ];
+
   constructor(
     private explorerService: ExplorerService,
   ) {
@@ -22,13 +35,9 @@ export class ElementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.ext?.startsWith('xls')) {
-      this.ext = 'xlsx';
-    } else if (
+     if (
       this.ext != null &&
-      this.ext != 'csv' &&
-      this.ext != 'sql' &&
-      this.ext != 'xml'
+      !this.iconTypes.includes(this.ext) 
     ) {
       this.ext = 'generic';
     }
@@ -38,6 +47,26 @@ export class ElementComponent implements OnInit {
     if (this.type == 'directory') {
       this.explorerService.pushPath(this.name);
       this.getPathEvent.emit();
+    } else if (this.type == 'file') {
+      this.elementDownload();
+    } else {
+      // error
+    }
+  }
+
+  elementDownload() {
+    if (this.type == 'directory') {
+      console.log(this.name);
+      
+      this.explorerService.downloadFolder(this.name)
+      .subscribe((data: any) => { 
+        var blob = new Blob([data]);
+        var downloadURL = window.URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = downloadURL;
+        link.download = this.name + '.tar.gz';
+        link.click();
+      });
     } else if (this.type == 'file') {
       this.explorerService.downloadFile(this.name)
         .subscribe((data: any) => { 
