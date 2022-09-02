@@ -1,4 +1,4 @@
 <div class="breadcrumb-container px-5 py-3 d-flex align-items-center">
-    <i class="bi bi-arrow-left-short breadcrumb-back me-2" *ngIf="path.depth > 0" (click)="goBack()"></i>
-    <div><b>{{path.path}}</b></div>
+    <i class="bi bi-arrow-left-short breadcrumb-back me-2" [ngClass]="{'invisible': path.depth <= 0}" (click)="goBack()"></i>
+    <input type="text" value="{{path.path}}" class="breadcrumb-input">
 </div>

@@ -8,3 +8,15 @@
     font-size: 32px;
     cursor: pointer;
 }
+
+.breadcrumb-input {
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    background-color: #d8dadb;
+    padding: 5px 10px;
+}
+
+input:focus{
+    outline: none;
+}

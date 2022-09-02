@@ -24,15 +24,15 @@
     padding: 5px 10px;
     border-radius: 8px;
     cursor: pointer;
-    border: 1px solid #eceff1;
+    border: 1px solid #d8dadb;
 }
 
 .element-download:hover {
-    background-color: #eceff1;
+    background-color: #d8dadb;
 }
 
 .element-download-loading {
-    background-color: #eceff1;
+    background-color: #d8dadb;
     cursor: wait;
 }
 
