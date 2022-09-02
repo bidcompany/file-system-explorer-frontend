@@ -14,6 +14,8 @@ export class AppComponent {
   elements: Array<any> = [];
   loading: boolean = false;
   loadingTimer: any;
+  notFound: boolean = false;
+  notFoundPath: string = '';
 
   ngOnInit(): void {
     this.getPathContent();
@@ -24,6 +26,8 @@ export class AppComponent {
       this.loading = true;
       this.elements = [];
     }, 100);
+
+    this.notFound = false;
   }
 
   stopLoading() {
@@ -40,6 +44,18 @@ export class AppComponent {
       .subscribe((data) => {
         this.elements = data;
         this.stopLoading();
+      }, (err) => {
+        if (err.status == 404) {
+          this.notFound = true;
+          this.notFoundPath = this.explorerService.path.path;
+          this.elements = [];
+          this.stopLoading();
+        }
       });
+  }
+
+  goRoot() {
+    this.explorerService.rootPath();
+    this.getPathContent();
   }
 }

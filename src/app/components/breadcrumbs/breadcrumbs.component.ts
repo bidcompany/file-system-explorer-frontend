@@ -16,7 +16,7 @@ export class BreadcrumbsComponent implements OnInit {
     private explorerService: ExplorerService
   ) 
   {
-    this.path = this.explorerService.path
+    this.path = this.explorerService.path;
   }
 
   ngOnInit(): void {
@@ -24,6 +24,11 @@ export class BreadcrumbsComponent implements OnInit {
 
   goBack() {
     this.explorerService.popPath();
+    this.getPathEvent.emit();
+  }
+
+  getPathContent() {
+    this.explorerService.computePathDepth();
     this.getPathEvent.emit();
   }
 }
