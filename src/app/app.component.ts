@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ExplorerService } from './services/explorer.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,18 +19,27 @@ export class AppComponent {
     this.getPathContent();
   }
 
-  getPathContent() {
-    /* show loading animation if user is waiting for > 100ms */
+  startLoading() {
     this.loadingTimer = setTimeout(() => {
       this.loading = true;
       this.elements = [];
-    }, 100)
+    }, 100);
+  }
+
+  stopLoading() {
+    if (this.loadingTimer) {
+      clearInterval(this.loadingTimer);
+    }
+    this.loading = false;
+  }
+
+  getPathContent() {
+    this.startLoading();
     
     this.explorerService.getPathContent()
       .subscribe((data) => {
         this.elements = data;
-        clearInterval(this.loadingTimer);
-        this.loading = false;
+        this.stopLoading();
       });
   }
 }

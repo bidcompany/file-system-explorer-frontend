@@ -55,18 +55,18 @@ export class ElementComponent implements OnInit {
   }
 
   elementDownload() {
-    if (this.type == 'directory') {
-      console.log(this.name);
-      
+    if (this.type == 'directory') {   
       this.explorerService.downloadFolder(this.name)
-      .subscribe((data: any) => { 
-        var blob = new Blob([data]);
-        var downloadURL = window.URL.createObjectURL(blob);
-        var link = document.createElement('a');
-        link.href = downloadURL;
-        link.download = this.name + '.tar.gz';
-        link.click();
-      });
+        .subscribe((data: any) => { 
+          var blob = new Blob([data]);
+          var downloadURL = window.URL.createObjectURL(blob);
+          var link = document.createElement('a');
+          link.href = downloadURL;
+          link.download = this.name + '.tar.gz';
+          link.click(); 
+
+          this.getPathEvent.emit();
+        });
     } else if (this.type == 'file') {
       this.explorerService.downloadFile(this.name)
         .subscribe((data: any) => { 
