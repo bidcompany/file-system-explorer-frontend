@@ -41,13 +41,9 @@ export class ExplorerService {
   }
 
   computePathDepth() {
-    console.log('first', this.path.path);
-    
     if (!this.path.path.startsWith('/')) {
       this.path.path = '/' + this.path.path;
     }
-
-    console.log('second', this.path.path);
 
     this.path.depth += this.path.path.split("/").length - 1;
   }
