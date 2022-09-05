@@ -17,7 +17,7 @@ export class ElementComponent implements OnInit {
   loadingTimer: any;
 
   iconTypes: Array<string> = [
-    'aac', 'ai', 'bmp', 'cs', 'css',
+    'tar.gz', 'aac', 'ai', 'bmp', 'cs', 'css',
     'csv', 'doc', 'docx', 'exe', 'gif',
     'heic', 'html', 'java', 'jpg', 'js',
     'json', 'jsx', 'key', 'm4p', 'md',

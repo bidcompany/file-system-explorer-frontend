@@ -1,6 +1,7 @@
 <div class="element-container text-center my-3">
     <div class="element-header" (click)="elementAction()">
         <i class="element-icon" [ngClass]="
+        ext == 'tar.gz' ? 'bi-file-earmark-zip' :
         ext == null ? 'bi bi-folder-fill' : 
         ext == 'generic' ? 'bi bi-file-earmark' :
         'bi bi-filetype-' + ext"></i>
