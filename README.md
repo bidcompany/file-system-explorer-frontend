@@ -4,6 +4,8 @@
 A frontend framework used for file exploration and download.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
 
+![](https://github.com/bidcompany/file-system-explorer-frontend/blob/master/demo.gif)
+
 ### Configuration
 1. Configure backend: [File System Explorer Backend](https://github.com/bidcompany/file-system-explorer-backend)
 2. Install npm dependencies
